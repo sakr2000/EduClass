@@ -1,0 +1,35 @@
+<mat-toolbar class="flex items-center justify-between">
+  <div class="basis-1 flex">
+    <button
+      mat-icon-button
+      class="mr-1 flex items-center justify-center"
+      aria-label="menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="p-2 text-2xl"><a routerLink="/">EduClass</a></span>
+  </div>
+  <span class="basis-4 grow"></span>
+  <ng-container *ngIf="authService.userData; else loggedIn">
+    <button
+      mat-flat-button
+      (click)="logOut()"
+      color="warn"
+      class="basis-1 ml-3"
+    >
+      Log-out
+    </button>
+  </ng-container>
+  <ng-template #loggedIn>
+    <a mat-flat-button class="basis-1" routerLink="/auth/login">log-in</a>
+    <a
+      mat-flat-button
+      color="primary"
+      class="basis-1 ml-3"
+      routerLink="/auth/signup"
+      >sign-up</a
+    >
+  </ng-template>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

@@ -1,1 +1,70 @@
-<p>login works!</p>
+<h2 class="font-bold text-6xl text-center mt-5">Log in</h2>
+
+<div class="mt-10 mx-auto w-8/12 border-green-700 border rounded-2xl p-5">
+  <form
+    class="flex flex-col items-center"
+    [formGroup]="loginForm"
+    (ngSubmit)="logUserIn()"
+  >
+    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Example@gmail.com" />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+        Please fill in the field.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.email.hasError('email')">
+        Invalid email format.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.email.hasError('minlength')">
+        The value must be at least
+        {{ loginForm.controls.email.errors!["minlength"].requiredLength }}
+        characters long.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.email.hasError('maxlength')">
+        The value you inputted can't be longer than
+        {{ loginForm.controls.email.errors!["maxlength"].requiredLength }}
+        characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
+      <mat-label>Password</mat-label>
+      <input
+        [type]="hide ? 'password' : 'text'"
+        matInput
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+        Please fill in the field.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.password.hasError('minlength')">
+        The value must be at least
+        {{ loginForm.controls.password.errors!["minlength"].requiredLength }}
+        characters long.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.password.hasError('maxlength')">
+        The value you inputted can't be longer than
+        {{ loginForm.controls.password.errors!["maxlength"].requiredLength }}
+        characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button [disabled]="loginForm.invalid">
+      Log In
+    </button>
+  </form>
+</div>
+
+<div class="text-center p-4">
+  First time here ? <a routerLink="/auth/signup" mat-button>Create account</a>
+</div>
