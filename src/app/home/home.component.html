@@ -1,35 +1,333 @@
 <mat-toolbar class="flex items-center justify-between">
   <div class="basis-1 flex">
-    <button
-      mat-icon-button
-      class="mr-1 flex items-center justify-center"
-      aria-label="menu icon"
+    <span class="p-2 text-2xl"
+      ><a routerLink="/"><span class="text-primary">Edu</span>Class</a></span
     >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="p-2 text-2xl"><a routerLink="/">EduClass</a></span>
   </div>
-  <span class="basis-4 grow"></span>
-  <ng-container *ngIf="authService.userData; else loggedIn">
-    <button
-      mat-flat-button
-      (click)="logOut()"
-      color="warn"
-      class="basis-1 ml-3"
-    >
-      Log-out
-    </button>
-  </ng-container>
-  <ng-template #loggedIn>
-    <a mat-flat-button class="basis-1" routerLink="/auth/login">log-in</a>
-    <a
-      mat-flat-button
-      color="primary"
-      class="basis-1 ml-3"
-      routerLink="/auth/signup"
-      >sign-up</a
-    >
-  </ng-template>
+  <span class="basis-3 grow"></span>
+
+  <a mat-flat-button class="ml-3" routerLink="/auth/login">log-in</a>
+  <a mat-flat-button color="primary" class="ml-3" routerLink="/auth/signup"
+    >sign-up</a
+  >
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<!-- hero section -->
+<section
+  class="flex p-4 md:p-8 flex-col items-center justify-center md:flex-row h-5/6 bg-gradient-to-t md:bg-gradient-to-l from-indigo-400 via-indigo-200 to-indigo-100"
+>
+  <div
+    class="basis-1/2 flex flex-col items-center text-center md:text-left md:items-start"
+  >
+    <h1 class="text-3xl lg:text-5xl font-bold p-3 uppercase">
+      Elevate your potentials <br />
+      with EduClass
+    </h1>
+    <p class="p-1 text-lg font-medium">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br />
+      Quam enim totam vel illo sunt!
+    </p>
+    <button mat-flat-button color="primary" class="my-2">Try Now</button>
+  </div>
+  <div class="flex-1 w-4/5 aspect-video md:w-50">
+    <img
+      class="w-full object-cover object-center"
+      src="assets/illustrations/ill-1.svg"
+      alt="hero image"
+    />
+  </div>
+</section>
+
+<!-- about us section -->
+<section class="mt-10 grid grid-cols-1 md:grid-cols-2 items-center">
+  <div class="w-6/6 aspect-video p-7">
+    <img
+      class="w-full object-cover object-center"
+      src="assets/illustrations/ill-2.svg"
+      alt=""
+    />
+  </div>
+  <div class="p-6 text-center flex flex-col items-center md:block md:text-left">
+    <h3 class="text-primary text-xl p-2 border-b-2 border-primary inline-block">
+      About Us
+    </h3>
+    <p class="p-2 w-10/12">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio fugiat
+      reprehenderit. autem velit quae inventore esse ducimus quo, nihil vel
+      minima, nostrum quis placeat est cumque amet illum itaque. Lorem ipsum
+      dolor sit amet consectetur adipisicing elit. Fuga suscipit consectetur
+      autem unde quasi quod error eos velit delectus, magnam corporis nisi rem
+      officia, illo atque quas temporibus quaerat tempore.
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <mat-icon matListItemIcon>done</mat-icon
+          ><span>Feature 1</span></mat-list-item
+        >
+        <mat-list-item role="listitem">
+          <mat-icon matListItemIcon>done</mat-icon
+          ><span>Feature 2</span></mat-list-item
+        >
+        <mat-list-item role="listitem">
+          <mat-icon matListItemIcon>done</mat-icon
+          ><span>Feature 3</span></mat-list-item
+        >
+      </mat-list>
+    </p>
+  </div>
+</section>
+
+<div
+  class="w-full p-8 bg-slate-800 flex flex-col md:flex-row justify-evenly items-center gap-3"
+>
+  <div
+    class="p-10 text-center border-slate-300 border-2 rounded-lg aspect-square w-48"
+  >
+    <span class="block text-white text-2xl">Students</span>
+    <span class="block text-white text-3xl font-bold mt-5">2000</span>
+  </div>
+  <div
+    class="p-10 text-center border-slate-300 border-2 rounded-lg aspect-square w-48"
+  >
+    <span class="block text-white text-2xl">Teachers</span>
+    <span class="block text-white text-3xl font-bold mt-5">150</span>
+  </div>
+  <div
+    class="p-10 text-center border-slate-300 border-2 rounded-lg aspect-square w-48"
+  >
+    <span class="block text-white text-2xl">Courses</span>
+    <span class="block text-white text-3xl font-bold mt-5">600</span>
+  </div>
+</div>
+
+<!-- popular courses -->
+<section class="pt-5 bg-gray-200">
+  <div class="text-center">
+    <h3
+      class="text-primary inline-block text-3xl p-2 text-center border-b-2 border-primary"
+    >
+      Popular Courses
+    </h3>
+  </div>
+
+  <div class="flex p-5 items-center justify-evenly flex-wrap gap-2">
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="p-5">
+      <img
+        matCardImage
+        class="w-80 aspect-video"
+        src="assets/illustrations/ill-3.svg"
+      />
+      <mat-card-header>
+        <mat-card-title>Web development course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="w-72 my-3"
+        ><p class="line-clamp-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam esse
+          obcaecati sunt quae, qui fugiat repellendus voluptas animi culpa vitae
+          suscipit voluptatibus. Alias fugiat fugit culpa odio commodi.
+          Nesciunt, aliquid?
+        </p></mat-card-content
+      >
+      <mat-card-actions class="flex justify-between">
+        <div class="flex items-center justify-start text-xs text-gray-500">
+          <mat-icon class="mat-15 mr-1">menu_book</mat-icon>
+          <span>12 Module</span>
+        </div>
+        <button mat-flat-button color="primary">See details</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>
+
+<div
+  class="text-center text-3xl p-6 flex flex-col md:flex-row items-center justify-around"
+>
+  <div class="h-28 aspect-auto">
+    <img
+      src="assets/illustrations/ill-5.svg"
+      class="h-full w-full object-cover object-bottom"
+      alt="illustration"
+    />
+  </div>
+  <div class="p-4">
+    <span class="m-2">Start your learning journey now</span>
+    <button mat-flat-button color="primary">Sign up</button>
+  </div>
+</div>
+
+<!-- footer section -->
+<footer></footer>
