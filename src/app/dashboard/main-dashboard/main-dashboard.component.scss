@@ -1,0 +1,7 @@
+mat-sidenav-container {
+  position: absolute;
+  inset: 0;
+  mat-sidenav {
+    width: clamp(250px, 50vw, 300px);
+  }
+}

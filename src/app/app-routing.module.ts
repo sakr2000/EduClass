@@ -14,6 +14,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: guestOnly },
   },
   {
     path: 'auth',

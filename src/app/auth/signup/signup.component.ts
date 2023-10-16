@@ -41,17 +41,27 @@ export class SignupComponent {
     }
     const { email, password } = this.signUpForm.value;
     try {
-      let response = await this._authService.registerNewUser(email!, password!);
-      console.log(response);
-      this.router.navigateByUrl('/');
-    } catch (err) {
+      await this._authService.registerNewUser(email!, password!);
+      await this._authService.signOut();
+      this.router.navigateByUrl('/auth/login');
+    } catch (err: any) {
       this.signUpForm.setErrors({ registrationFailed: true });
       this.signUpForm.reset();
-      this.snackBar.open('Registration Failed', 'dismiss', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      });
+      let emailExists = JSON.stringify(err.code).includes(
+        'email-already-in-use'
+      );
+
+      this.snackBar.open(
+        emailExists
+          ? 'Email already exists, Try Logging in.'
+          : 'Registration Failed, Please try again',
+        'dismiss',
+        {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        }
+      );
     }
   }
 }

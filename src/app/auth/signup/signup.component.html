@@ -1,93 +1,139 @@
-<h2 class="font-bold text-6xl text-center mt-5">Register Now</h2>
-
-<div class="mt-10 mx-auto w-8/12 border-green-700 border rounded-2xl p-5">
-  <form
-    class="flex flex-col items-center"
-    [formGroup]="signUpForm"
-    (ngSubmit)="registerUser()"
-  >
-    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
-      <mat-label>name</mat-label>
-      <input matInput formControlName="name" placeholder="Ex. john Karter" />
-      <mat-error *ngIf="signUpForm.controls.name.hasError('required')">
-        Please fill in the field.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.name.hasError('minlength')">
-        The value must be at least
-        {{ signUpForm.controls.name.errors!["minlength"].requiredLength }}
-        characters long.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.name.hasError('maxlength')">
-        The value you inputted can't be longer than
-        {{ signUpForm.controls.name.errors!["maxlength"].requiredLength }}
-        characters long.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Example@gmail.com" />
-      <mat-error *ngIf="signUpForm.controls.email.hasError('required')">
-        Please fill in the field.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.email.hasError('email')">
-        Invalid email format.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.email.hasError('minlength')">
-        The value must be at least
-        {{ signUpForm.controls.email.errors!["minlength"].requiredLength }}
-        characters long.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.email.hasError('maxlength')">
-        The value you inputted can't be longer than
-        {{ signUpForm.controls.email.errors!["maxlength"].requiredLength }}
-        characters long.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput formControlName="password" />
-      <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
-        Please fill in the field.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.password.hasError('minlength')">
-        The value must be at least
-        {{ signUpForm.controls.password.errors!["minlength"].requiredLength }}
-        characters long.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.password.hasError('maxlength')">
-        The value you inputted can't be longer than
-        {{ signUpForm.controls.password.errors!["maxlength"].requiredLength }}
-        characters long.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-10/12 my-2" hideRequiredMarker="true">
-      <mat-label>Confirm password</mat-label>
-      <input type="password" matInput formControlName="confirm_password" />
-      <mat-error
-        *ngIf="signUpForm.controls.confirm_password.hasError('required')"
+<div
+  class="mt-5 w-full h-10/12 grid grid-cols-1 items-center justify-center lg:grid-cols-2"
+>
+  <div>
+    <div class="mt-5 mx-auto w-10/12 border-primary border-2 rounded-2xl p-5">
+      <h2 class="font-bold text-4xl lg:text-6xl text-center my-5">
+        Register Now
+      </h2>
+      <form
+        class="flex flex-col items-center"
+        [formGroup]="signUpForm"
+        (ngSubmit)="registerUser()"
       >
-        Please fill in the field.
-      </mat-error>
-      <mat-error
-        *ngIf="signUpForm.controls.confirm_password.hasError('minlength')"
-      >
-        The value must be at least
-        {{
-          signUpForm.controls.confirm_password.errors!["minlength"]
-            .requiredLength
-        }}
-        characters long.
-      </mat-error>
-    </mat-form-field>
+        <mat-form-field
+          class="w-full lg:w-10/12 my-2"
+          hideRequiredMarker="true"
+        >
+          <mat-label>name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Ex. john Karter"
+          />
+          <mat-error *ngIf="signUpForm.controls.name.hasError('required')">
+            Please fill in the field.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.name.hasError('minlength')">
+            The value must be at least
+            {{ signUpForm.controls.name.errors!["minlength"].requiredLength }}
+            characters long.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.name.hasError('maxlength')">
+            The value you inputted can't be longer than
+            {{ signUpForm.controls.name.errors!["maxlength"].requiredLength }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
 
-    <button type="submit" mat-flat-button [disabled]="signUpForm.invalid">
-      Sign Up
-    </button>
-  </form>
-</div>
-<div class="text-center p-4">
-  Already have an account ? <a routerLink="/auth/login" mat-button>Log in</a>
+        <mat-form-field
+          class="w-full lg:w-10/12 my-2"
+          hideRequiredMarker="true"
+        >
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Example@gmail.com"
+          />
+          <mat-error *ngIf="signUpForm.controls.email.hasError('required')">
+            Please fill in the field.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.email.hasError('email')">
+            Invalid email format.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.email.hasError('minlength')">
+            The value must be at least
+            {{ signUpForm.controls.email.errors!["minlength"].requiredLength }}
+            characters long.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.email.hasError('maxlength')">
+            The value you inputted can't be longer than
+            {{ signUpForm.controls.email.errors!["maxlength"].requiredLength }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="w-full lg:w-10/12 my-2"
+          hideRequiredMarker="true"
+        >
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" />
+          <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
+            Please fill in the field.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.password.hasError('minlength')">
+            The value must be at least
+            {{
+              signUpForm.controls.password.errors!["minlength"].requiredLength
+            }}
+            characters long.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.password.hasError('maxlength')">
+            The value you inputted can't be longer than
+            {{
+              signUpForm.controls.password.errors!["maxlength"].requiredLength
+            }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="w-full lg:w-10/12 my-2"
+          hideRequiredMarker="true"
+        >
+          <mat-label>Confirm password</mat-label>
+          <input type="password" matInput formControlName="confirm_password" />
+          <mat-error
+            *ngIf="signUpForm.controls.confirm_password.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+          <mat-error
+            *ngIf="signUpForm.controls.confirm_password.hasError('minlength')"
+          >
+            The value must be at least
+            {{
+              signUpForm.controls.confirm_password.errors!["minlength"]
+                .requiredLength
+            }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="signUpForm.invalid"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+    <div class="text-center p-4 font-medium">
+      Already have an account ?
+      <a routerLink="/auth/login" mat-button
+        ><span class="text-primary font-medium p-2">Log In</span></a
+      >
+    </div>
+  </div>
+  <div class="w-6/6 aspect-video p-7">
+    <img
+      class="w-full object-cover object-center"
+      src="assets/illustrations/signup-ill.svg"
+      alt=""
+    />
+  </div>
 </div>

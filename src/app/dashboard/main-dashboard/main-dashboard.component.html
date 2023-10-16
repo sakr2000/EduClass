@@ -1,0 +1,84 @@
+<mat-sidenav-container class="" hasBackdrop="false">
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <div class="overflow-hidden mt-3 w-4/6 aspect-square mx-auto rounded-full">
+      <img
+        class="w-full object-cover object-center"
+        src="https://picsum.photos/200/300"
+        alt="profile image"
+      />
+    </div>
+    <ul class="flex flex-col mt-6">
+      <li
+        class="w-full text-gray-800 flex items-center p-5 text-xl cursor-pointer transition-all hover:text-slate-900 hover:bg-slate-200"
+        matRipple
+        routerLink="./overview"
+        [routerLinkActive]="'text-slate-900 bg-slate-200 pointer-events-none'"
+      >
+        <mat-icon class="mat-18 mr-4">dashboard</mat-icon>
+        <span>Dashboard</span>
+      </li>
+      <mat-divider></mat-divider>
+      <li
+        class="w-full text-gray-800 flex items-center p-5 text-xl cursor-pointer transition-all hover:text-slate-900 hover:bg-slate-200"
+        matRipple
+        routerLink="./courses"
+        [routerLinkActive]="'text-slate-900 bg-slate-200 pointer-events-none'"
+      >
+        <mat-icon class="mat-18 mr-4">school</mat-icon>
+        <span>Courses</span>
+      </li>
+      <mat-divider></mat-divider>
+      <li
+        class="w-full text-gray-800 flex items-center p-5 text-xl cursor-pointer transition-all hover:text-slate-900 hover:bg-slate-200"
+        matRipple
+      >
+        <mat-icon class="mat-18 mr-4">assessment</mat-icon>
+        <span>Assessments</span>
+      </li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="flex items-center justify-between">
+      <div class="basis-1 flex">
+        <button
+          mat-icon-button
+          class="mr-1 flex items-center justify-center"
+          aria-label="sidenav icon"
+          (click)="sidenav.toggle()"
+        >
+          <mat-icon>{{
+            sidenav.opened ? "keyboard_arrow_left" : "menu"
+          }}</mat-icon>
+        </button>
+        <span class="p-2 text-2xl"><a>EduClass</a></span>
+      </div>
+      <span class="basis-3 grow"></span>
+      <div
+        class="overflow-hidden w-9 h-9 rounded-full cursor-pointer"
+        [matMenuTriggerFor]="menu"
+      >
+        <img
+          class="w-full object-cover object-center"
+          src="https://picsum.photos/200/300"
+          alt="profile image"
+        />
+      </div>
+
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item class="ml-3">
+          <mat-icon>account_circle</mat-icon> <span>Profile</span></a
+        >
+        <button
+          mat-menu-item
+          (click)="logOut()"
+          color="warn"
+          class="basis-1 ml-3"
+        >
+          <mat-icon>logout</mat-icon><span>Log-out</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
