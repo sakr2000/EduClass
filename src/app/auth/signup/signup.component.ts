@@ -1,3 +1,4 @@
+import { FirestoreService } from './../../services/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
@@ -11,10 +12,20 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   constructor(
-    private _authService: AuthService,
+    private authService: AuthService,
+    private firestoreService: FirestoreService,
     public snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+    firestoreService.readData().subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
   signUpForm = new FormGroup({
     name: new FormControl('', [
@@ -41,8 +52,16 @@ export class SignupComponent {
     }
     const { email, password } = this.signUpForm.value;
     try {
-      await this._authService.registerNewUser(email!, password!);
-      await this._authService.signOut();
+      await this.authService.registerNewUser(email!, password!);
+      this.authService.signOut();
+      // this.firestoreService
+      //   .addData('users', this.signUpForm.value)
+      //   .then((data) => {
+      //     console.log(data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
       this.router.navigateByUrl('/auth/login');
     } catch (err: any) {
       this.signUpForm.setErrors({ registrationFailed: true });
@@ -50,6 +69,7 @@ export class SignupComponent {
       let emailExists = JSON.stringify(err.code).includes(
         'email-already-in-use'
       );
+      console.log(err);
 
       this.snackBar.open(
         emailExists
@@ -64,4 +84,16 @@ export class SignupComponent {
       );
     }
   }
+
+  // data = this.firestoreService.readData('users');
+  // show() {
+  //   this.data.subscribe(
+  //     (val) => {
+  //       console.log(val);
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 }
