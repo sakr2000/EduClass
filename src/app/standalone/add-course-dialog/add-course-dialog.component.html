@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Add Course</h1>
+
+<div class="min-w-fit p-3 lg:w-[700px] lg:p-5" mat-dialog-content>
+  <form
+    class="w-10/12 lg:w-full flex flex-col items-center lg:p-5"
+    #courseForm="ngForm"
+  >
+    <mat-form-field
+      class="w-12/12 p-2 lg:p-0 lg:w-11/12 my-2"
+      hideRequiredMarker="true"
+    >
+      <mat-label>Course Name</mat-label>
+      <input
+        matInput
+        #courseName="ngModel"
+        name="name"
+        required
+        maxlength="50"
+        minlength="6"
+        [(ngModel)]="course.name"
+        placeholder="Ex.Backend Development"
+      />
+      <mat-error *ngIf="courseName.hasError('required')">
+        Please fill in the field.
+      </mat-error>
+      <mat-error *ngIf="courseName.hasError('minlength')">
+        The value must be at least
+        {{ courseName.errors!["minlength"].requiredLength }}
+        characters long.
+      </mat-error>
+      <mat-error *ngIf="courseName.hasError('maxlength')">
+        The value you inputted can't be longer than
+        {{ courseName.errors!["maxlength"].requiredLength }}
+        characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      class="w-12/12 p-2 lg:p-0 lg:w-11/12 my-2"
+      hideRequiredMarker="true"
+    >
+      <mat-label>description</mat-label>
+      <textarea
+        matInput
+        #courseDescription="ngModel"
+        name="description"
+        required
+        maxlength="500"
+        minlength="6"
+        [(ngModel)]="course.description"
+        placeholder="Add the course description here"
+      ></textarea>
+      <mat-error *ngIf="courseDescription.hasError('required')">
+        Please fill in the field.
+      </mat-error>
+      <mat-error *ngIf="courseDescription.hasError('minlength')">
+        The value must be at least
+        {{ courseDescription.errors!["minlength"].requiredLength }}
+        characters long.
+      </mat-error>
+      <mat-error *ngIf="courseDescription.hasError('maxlength')">
+        The value you inputted can't be longer than
+        {{ courseDescription.errors!["maxlength"].requiredLength }}
+        characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="close()">Close</button>
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [mat-dialog-close]="course"
+        [disabled]="courseForm.invalid"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>

@@ -30,6 +30,15 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: authOnly },
   },
+  {
+    path: 'course/:id',
+    loadChildren: () =>
+      import('./course-details/course-details.module').then(
+        (m) => m.CourseDetailsModule
+      ),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: authOnly },
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,12 @@
+button[mat-fab] {
+  position: fixed;
+  bottom: 3%;
+  right: 2%;
+}
+button[mat-mini-fab] {
+  position: absolute;
+  left: -5px;
+  bottom: 2px;
+  background: transparent;
+  box-shadow: none;
+}

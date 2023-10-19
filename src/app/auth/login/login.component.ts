@@ -38,7 +38,7 @@ export class LoginComponent {
 
     try {
       let result = await this._authService.loginUser(email!, password!);
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/dashboard/overview');
     } catch (e) {
       this.loginForm.setErrors({ loginFailed: true });
       this.loginForm.reset();

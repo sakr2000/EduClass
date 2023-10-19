@@ -1,9 +1,11 @@
+import { User } from './../../interfaces/user';
 import { FirestoreService } from './../../services/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { user } from 'rxfire/auth';
 
 @Component({
   selector: 'app-signup',
@@ -16,16 +18,7 @@ export class SignupComponent {
     private firestoreService: FirestoreService,
     public snackBar: MatSnackBar,
     private router: Router
-  ) {
-    firestoreService.readData().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  ) {}
 
   signUpForm = new FormGroup({
     name: new FormControl('', [
@@ -50,18 +43,18 @@ export class SignupComponent {
     if (this.signUpForm.invalid) {
       return;
     }
-    const { email, password } = this.signUpForm.value;
+    let newuser = new User();
+    const { name, email, password } = this.signUpForm.value;
+    newuser.name = name ? name : '';
+    newuser.email = email ? email : '';
     try {
       await this.authService.registerNewUser(email!, password!);
+      await this.firestoreService
+        .addData('users', Object.assign({}, newuser))
+        .catch((err) => {
+          console.log(err);
+        });
       this.authService.signOut();
-      // this.firestoreService
-      //   .addData('users', this.signUpForm.value)
-      //   .then((data) => {
-      //     console.log(data);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
       this.router.navigateByUrl('/auth/login');
     } catch (err: any) {
       this.signUpForm.setErrors({ registrationFailed: true });
@@ -84,16 +77,4 @@ export class SignupComponent {
       );
     }
   }
-
-  // data = this.firestoreService.readData('users');
-  // show() {
-  //   this.data.subscribe(
-  //     (val) => {
-  //       console.log(val);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 }

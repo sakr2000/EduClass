@@ -8,11 +8,10 @@ import { MaterialModule } from './material/material.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { HomeComponent } from './home/home.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -23,7 +22,6 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     MaterialModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
   ],

@@ -11,9 +11,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 const material = [
   MatInputModule,
+  MatTabsModule,
   MatToolbarModule,
+  MatTableModule,
   MatIconModule,
   MatFormFieldModule,
   MatListModule,
@@ -22,6 +27,7 @@ const material = [
   MatSidenavModule,
   MatCardModule,
   MatMenuModule,
+  MatDialogModule,
   MatRippleModule,
   MatDividerModule,
 ];

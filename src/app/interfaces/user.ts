@@ -1,7 +1,11 @@
-export interface User {
+import { Course } from './course';
+
+export class User {
   name: string;
   email: string;
   age: number;
   admin: boolean;
-  myCourses?: Array<object>;
+  myCourses?: Course[];
+  id?: string;
+  profilePhoto?: string;
 }
