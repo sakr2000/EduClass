@@ -17,8 +17,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 const material = [
   MatInputModule,
+  MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatTabsModule,

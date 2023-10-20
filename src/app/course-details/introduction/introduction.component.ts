@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddFileDialogComponent } from 'src/app/standalone/add-file-dialog/add-file-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddAssessmentDialogComponent } from 'src/app/standalone/add-assessment-dialog/add-assessment-dialog.component';
+import { TakeAssessmentDialogComponent } from 'src/app/standalone/take-assessment-dialog/take-assessment-dialog.component';
 
 @Component({
   selector: 'app-introduction',
@@ -100,6 +101,11 @@ export class IntroductionComponent {
       return (kb / 1024).toFixed(2) + ' Mb';
     }
     return kb.toFixed(2) + ' Kb';
+  }
+  startQuiz(quizData: any) {
+    const dialogRef = this.dialog.open(TakeAssessmentDialogComponent, {
+      data: quizData,
+    });
   }
   logOut() {
     this.authService.signOut();

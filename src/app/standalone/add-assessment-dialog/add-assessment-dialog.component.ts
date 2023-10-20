@@ -1,3 +1,4 @@
+import { CorrectAnswer } from './../../validators/correct-answer';
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -24,7 +25,8 @@ export class assessmentData {
 export class AddAssessmentDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddAssessmentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public courseId: string
+    @Inject(MAT_DIALOG_DATA) public courseId: string,
+    private correctAnswer: CorrectAnswer
   ) {
     this.data.course = courseId;
   }
@@ -38,14 +40,17 @@ export class AddAssessmentDialogComponent {
     ]),
     questionNum: new FormControl(5, [Validators.required]),
   });
-  secondFormGroup = new FormGroup({
-    question: new FormControl('', [Validators.required]),
-    answer1: new FormControl('', [Validators.required]),
-    answer2: new FormControl('', [Validators.required]),
-    answer3: new FormControl('', [Validators.required]),
-    answer4: new FormControl('', [Validators.required]),
-    correctAnswer: new FormControl('', [Validators.required]),
-  });
+  secondFormGroup = new FormGroup(
+    {
+      question: new FormControl('', [Validators.required]),
+      answer1: new FormControl('', [Validators.required]),
+      answer2: new FormControl('', [Validators.required]),
+      answer3: new FormControl('', [Validators.required]),
+      answer4: new FormControl('', [Validators.required]),
+      correctAnswer: new FormControl('', [Validators.required]),
+    },
+    { validators: this.correctAnswer.checkIfAnswerMatches }
+  );
 
   setCounter() {
     this.data.title = this.firstFormGroup.value.title!;
