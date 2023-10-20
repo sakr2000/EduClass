@@ -5,7 +5,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { user } from 'rxfire/auth';
+import { PasswordMatch } from 'src/app/validators/password-match';
 
 @Component({
   selector: 'app-signup',
@@ -17,27 +17,31 @@ export class SignupComponent {
     private authService: AuthService,
     private firestoreService: FirestoreService,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private passmatch: PasswordMatch
   ) {}
 
-  signUpForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.minLength(6),
-      Validators.maxLength(50),
-      Validators.required,
-    ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(20),
-    ]),
-    confirm_password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(20),
-    ]),
-  });
+  signUpForm = new FormGroup(
+    {
+      name: new FormControl('', [
+        Validators.minLength(6),
+        Validators.maxLength(50),
+        Validators.required,
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+      ]),
+      confirm_password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+      ]),
+    },
+    { validators: this.passmatch.confirmPassword }
+  );
 
   async registerUser() {
     if (this.signUpForm.invalid) {
@@ -68,7 +72,7 @@ export class SignupComponent {
         emailExists
           ? 'Email already exists, Try Logging in.'
           : 'Registration Failed, Please try again',
-        'dismiss',
+        'Dismiss',
         {
           duration: 3000,
           horizontalPosition: 'center',

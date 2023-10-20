@@ -32,8 +32,8 @@
         class="w-full text-gray-800 flex items-center p-5 text-xl cursor-pointer transition-all hover:text-slate-900 hover:bg-slate-200"
         matRipple
       >
-        <mat-icon class="mat-18 mr-4">assessment</mat-icon>
-        <span>Assessments</span>
+        <mat-icon class="mat-18 mr-4">settings</mat-icon>
+        <span>Settings</span>
       </li>
     </ul>
   </mat-sidenav>
@@ -51,7 +51,9 @@
             sidenav.opened ? "keyboard_arrow_left" : "menu"
           }}</mat-icon>
         </button>
-        <span class="p-2 text-2xl"><a>EduClass</a></span>
+        <span class="p-2 text-2xl"
+          ><a><span class="text-primary">Edu</span>Class</a></span
+        >
       </div>
       <span class="basis-3 grow"></span>
       <div
@@ -69,13 +71,9 @@
         <a mat-menu-item class="ml-3">
           <mat-icon>account_circle</mat-icon> <span>Profile</span></a
         >
-        <button
-          mat-menu-item
-          (click)="logOut()"
-          color="warn"
-          class="basis-1 ml-3"
-        >
-          <mat-icon>logout</mat-icon><span>Log-out</span>
+        <button mat-menu-item (click)="logOut()" class="basis-1 ml-3">
+          <mat-icon color="warn">logout</mat-icon
+          ><span class="text-red-600">Log-out</span>
         </button>
       </mat-menu>
     </mat-toolbar>

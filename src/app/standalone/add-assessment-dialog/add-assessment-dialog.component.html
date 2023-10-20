@@ -1,0 +1,169 @@
+<div class="lg:w-[600px]">
+  <mat-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Settings</ng-template>
+      <form class="p-5 flex flex-col gap-2" [formGroup]="firstFormGroup">
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            placeholder="Assessment Title"
+            formControlName="title"
+          />
+          <mat-error *ngIf="firstFormGroup.controls.title.hasError('required')">
+            Please fill in the field.
+          </mat-error>
+          <mat-error
+            *ngIf="firstFormGroup.controls.title.hasError('minlength')"
+          >
+            The value must be at least
+            {{
+              firstFormGroup.controls.title.errors!["minlength"].requiredLength
+            }}
+            characters long.
+          </mat-error>
+          <mat-error
+            *ngIf="firstFormGroup.controls.title.hasError('maxlength')"
+          >
+            The value you inputted can't be longer than
+            {{
+              firstFormGroup.controls.title.errors!["maxlength"].requiredLength
+            }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Questions Number</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="10"
+            formControlName="questionNum"
+          />
+          <mat-error
+            *ngIf="firstFormGroup.controls.questionNum.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+        <div class="flex justify-between items-center">
+          <button mat-button (click)="close()">Close</button>
+          <button mat-button (click)="setCounter()" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Add questions">
+      <form class="p-5 flex flex-col gap-2" [formGroup]="secondFormGroup">
+        <p class="self-end">
+          Question : {{ counter }} of {{ firstFormGroup.value.questionNum }}
+        </p>
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Question</mat-label>
+          <input
+            matInput
+            placeholder="Ex. What is life ?"
+            formControlName="question"
+          />
+          <mat-error
+            *ngIf="secondFormGroup.controls.question.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Answer 1</mat-label>
+          <input matInput formControlName="answer1" />
+          <mat-error
+            *ngIf="secondFormGroup.controls.answer1.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Answer 2</mat-label>
+          <input matInput formControlName="answer2" />
+          <mat-error
+            *ngIf="secondFormGroup.controls.answer2.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Answer 3</mat-label>
+          <input matInput formControlName="answer3" />
+          <mat-error
+            *ngIf="secondFormGroup.controls.answer3.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Answer 4</mat-label>
+          <input matInput formControlName="answer4" />
+          <mat-error
+            *ngIf="secondFormGroup.controls.answer4.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field hideRequiredMarker="true">
+          <mat-label>Correct Answer</mat-label>
+          <input matInput formControlName="correctAnswer" />
+          <mat-error
+            *ngIf="secondFormGroup.controls.correctAnswer.hasError('required')"
+          >
+            Please fill in the field.
+          </mat-error>
+          <!-- toDo : check if it's one of the 4 answer with custom validator -->
+          <mat-error
+            *ngIf="secondFormGroup.controls.correctAnswer.hasError('maxlength')"
+          >
+            The value you inputted can't be longer than
+            {{
+              secondFormGroup.controls.correctAnswer.errors!["maxlength"]
+                .requiredLength
+            }}
+            characters long.
+          </mat-error>
+        </mat-form-field>
+        <div class="flex justify-between items-center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            mat-button
+            *ngIf="counter < firstFormGroup.value.questionNum!"
+            (click)="addQuestion()"
+            [disabled]="secondFormGroup.invalid"
+          >
+            Add
+          </button>
+          <button
+            *ngIf="counter == firstFormGroup.value.questionNum"
+            mat-button
+            (click)="addQuestion()"
+            [disabled]="secondFormGroup.invalid"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Finish">
+      <p class="text-xl p-5 font-medium text-center">
+        Questions added. Submit Assessment?
+      </p>
+      <div class="flex justify-between items-center">
+        <button mat-button (click)="setCounter()" matStepperPrevious>
+          Back
+        </button>
+        <button mat-button color="warn" (click)="stepper.reset()">Reset</button>
+        <button mat-button [matDialogClose]="data">Submit</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

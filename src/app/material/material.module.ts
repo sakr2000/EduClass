@@ -14,11 +14,17 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
 const material = [
   MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatTabsModule,
   MatToolbarModule,
   MatTableModule,
+  MatStepperModule,
   MatIconModule,
   MatFormFieldModule,
   MatListModule,

@@ -7,7 +7,9 @@
 >
   <mat-icon>add</mat-icon>
 </button>
-<div class="grid lg:grid-cols-3 gap-2 p-5">
+<div
+  class="grid grid-cols-1 md:grid-cols-2 justify-center items-center xl:grid-cols-3 gap-2 p-5"
+>
   <mat-card class="p-5" *ngFor="let course of coursesList">
     <img
       matCardImage
@@ -17,7 +19,7 @@
     <mat-card-header>
       <mat-card-title>{{ course["name"] }}</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="w-72 my-3"
+    <mat-card-content class="min-w-fit my-3"
       ><p class="line-clamp-2">
         {{ course["description"] }}
       </p></mat-card-content

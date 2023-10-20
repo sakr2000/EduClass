@@ -2,7 +2,7 @@
   <div class="basis-1 flex">
     <button
       mat-icon-button
-      routerLink="/dashboard"
+      routerLink="/dashboard/courses"
       class="mr-1 flex items-center justify-center"
       aria-label="sidenav icon"
     >
@@ -33,7 +33,7 @@
 </mat-toolbar>
 
 <mat-drawer-container class="w-full h-[90dvh]" autosize>
-  <mat-drawer class="w-[300px]" #drawer mode="side" opened="true">
+  <mat-drawer class="w-[280px]" #drawer mode="side" opened="true">
     <div
       class="overflow-hidden mt-3 w-5/6 shadow aspect-square mx-auto rounded-lg"
     >
@@ -81,7 +81,7 @@
         </div>
       </mat-tab>
       <mat-tab label="Documents">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="documents" class="mat-elevation-z8">
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>File Name</th>
             <td mat-cell *matCellDef="let element">
@@ -105,10 +105,9 @@
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedDocColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedDocColumns"></tr>
 
-          <!-- Row shown when there is no matching data. -->
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">No documents added yet</td>
           </tr>
@@ -117,13 +116,53 @@
           mat-fab
           class="fixed"
           color="primary"
-          (click)="openDialog()"
+          (click)="openDocDialog()"
           aria-label="Add Document"
         >
           <mat-icon>add</mat-icon>
         </button>
       </mat-tab>
-      <mat-tab label="Assessments"> Content 3 </mat-tab>
+      <mat-tab label="Assessments">
+        <table mat-table [dataSource]="assessments" class="mat-elevation-z8">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Assessment Title</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.title }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="questions">
+            <th mat-header-cell *matHeaderCellDef>Questions</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.questions.length }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="start">
+            <th mat-header-cell *matHeaderCellDef>Take Assessment</th>
+            <td mat-cell *matCellDef="let element">
+              <a target="_blank" mat-button>Start</a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedAssColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedAssColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No Assessments added yet</td>
+          </tr>
+        </table>
+
+        <button
+          mat-fab
+          class="fixed"
+          color="primary"
+          (click)="openAssDialog()"
+          aria-label="Add Document"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-tab>
     </mat-tab-group>
   </mat-drawer-content>
 </mat-drawer-container>

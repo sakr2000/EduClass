@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFileDialogComponent } from 'src/app/standalone/add-file-dialog/add-file-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddAssessmentDialogComponent } from 'src/app/standalone/add-assessment-dialog/add-assessment-dialog.component';
 
 @Component({
   selector: 'app-introduction',
@@ -12,10 +13,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./introduction.component.scss'],
 })
 export class IntroductionComponent {
-  courseId: any;
+  courseId: string;
   courseData: any;
-  dataSource: any;
-  displayedColumns: string[] = ['name', 'size', 'Download'];
+  documents: any;
+  assessments: any;
+  displayedDocColumns: string[] = ['name', 'size', 'Download'];
+  displayedAssColumns: string[] = ['title', 'questions', 'start'];
   constructor(
     private ar: ActivatedRoute,
     private db: FirestoreService,
@@ -32,11 +35,16 @@ export class IntroductionComponent {
     });
     db.getAllDataById('course_docs', this.courseId).subscribe({
       next: (data) => {
-        this.dataSource = data;
+        this.documents = data;
+      },
+    });
+    db.getAllDataById('Assessments', this.courseId).subscribe({
+      next: (data) => {
+        this.assessments = data;
       },
     });
   }
-  openDialog() {
+  openDocDialog() {
     const dialogRef = this.dialog.open(AddFileDialogComponent);
     dialogRef.afterClosed().subscribe({
       next: (data) => {
@@ -50,6 +58,31 @@ export class IntroductionComponent {
           })
           .then(() => {
             this.snackBar.open('File was added', 'dismiss', {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+    });
+  }
+  openAssDialog() {
+    const dialogRef = this.dialog.open(AddAssessmentDialogComponent, {
+      data: this.courseId,
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (value) => {
+        this.db
+          .addData(`Assessments`, {
+            course: this.courseId,
+            title: value.title,
+            questions: value.questions,
+          })
+          .then(() => {
+            this.snackBar.open('Successfully added', 'dismiss', {
               duration: 2000,
               horizontalPosition: 'center',
               verticalPosition: 'bottom',

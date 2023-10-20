@@ -2,11 +2,14 @@ button[mat-fab] {
   position: fixed;
   bottom: 3%;
   right: 2%;
+  z-index: 3;
 }
 button[mat-mini-fab] {
   position: absolute;
-  left: -5px;
+  left: 0;
   bottom: 2px;
-  background: transparent;
+  color: #6d42ba;
+  background: rgba(157, 130, 203, 0.308);
   box-shadow: none;
+  z-index: 3;
 }
