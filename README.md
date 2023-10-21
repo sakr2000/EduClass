@@ -1,6 +1,7 @@
 # EduClass
 
-An E-learning website using **Angular** framework with the following [features](#Features).
+A responsive E-learning site using **Angular 15**, **SCSS**, and **Tailwind CSS**. Features include Firebase Authentication,
+Angular Forms with validation, Firebase Cloud Storage for file handling, and data storage with Firestore. For more check the [features](#Features) section.
 
 This project was a required task for **`SYNC`** internship.
 
